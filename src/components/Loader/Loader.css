@@ -1,0 +1,8 @@
+.Loader {
+  display: grid;
+  padding: 0;
+  padding-top: 400px;
+  padding-bottom: 400px;
+  margin: auto;
+  justify-content: center;
+}

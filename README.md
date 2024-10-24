@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/ItzAle/f1-app/blob/main/README-es.md)
 
-## Getting Started
+# F1 App made with React
 
-First, run the development server:
+# You can check the web [here](https://formula1app-ale.vercel.app/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# ❓ What is this?
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+With this app created in React you will be able to see the classification of drivers and constructors, also (in the future) you will be able to see the next races, drivers, etc...
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# ❓ How this work?
 
-## Learn More
+The main use of the application is done with [react](react.dev) using the [ergast](https://ergast.com/mrd/) api to be able to receive information about drivers, constructors, races, etc...
 
-To learn more about Next.js, take a look at the following resources:
+# 🖌️ Figma project
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To layout the web (mobile first) I used the figma program, you can see the project [here](https://www.figma.com/design/ODMeDrwZXAJ3uYMqaNU37N/Untitled?node-id=45-1226&t=FxrkAr6LKEDzR72J-1).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 💻 Technical competencies
 
-## Deploy on Vercel
+- Develop React components atomically
+- Manage the state of a React functional component
+- Manage the lifecycle of React components
+- Use UI events
+- Consuming an API
+- Asynchrony.
+- Adding user feedbacks (UX)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 🖥️ Technologies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+# 🛠️ Tools
+
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+
+# ❗Notice
+
+This website is unofficial and are not associated in any way with the Formula 1 companies. F1, FORMULA ONE, FORMULA 1, FIA FORMULA ONE WORLD CHAMPIONSHIP, GRAND PRIX and related marks are trade marks of Formula One Licensing B.V

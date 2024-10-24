@@ -1,0 +1,182 @@
+.navbar {
+  background-color: #ffff;
+  display: flex;
+  justify-content: space-between;
+  z-index: 400;
+  right: 0;
+  width: 100%;
+  align-items: center;
+}
+.logo_toggle {
+  display: none;
+}
+.logo {
+  transition: all 0.3s ease;
+  margin: 10px;
+  width: 100%;
+  height: 30px;
+}
+
+.logo:hover {
+  transition: all 0.3s ease;
+  transform: translateY(-5px);
+}
+
+.navbar_desk {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background-color: var(--background-color);
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+.buttons {
+  transition: all 0.5s ease;
+  display: flex;
+  gap: 55px;
+  font-size: 10px;
+  padding: 0 10px 0 0;
+  font-size: 40px;
+  align-items: baseline;
+}
+.DriverStandings {
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+.DriverStandings:hover {
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+  color: var(--color3);
+}
+.ConstructorStandings:hover {
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+  color: var(--color3);
+}
+.ConstructorStandings {
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+.nav_items a {
+  font-family: "F1 Bold";
+  padding: 30px;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.5s ease-in-out;
+  font-weight: bold;
+}
+
+.home_mobile,
+.ds_mobile,
+.cs_mobile {
+  font: var(--f1r);
+  font-size: 28px;
+}
+.home_mobile:active,
+.ds_mobile:active,
+.cs_mobile:active {
+  opacity: 40%;
+  transition: all 0.3s ease;
+}
+
+.githubLink {
+  font-size: 40px;
+  padding-left: 10px;
+}
+@media (max-width: 1024px) {
+  .nav_items {
+    z-index: 400;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    gap: 20px;
+    background: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: 0.5s ease all;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .nav_items.open {
+    transform: translateX(0) !important;
+    transition: all 0.5 ease;
+  }
+  .nav_toggle {
+    display: flex !important;
+    flex-direction: column;
+    margin: 15px;
+    align-items: flex-end;
+  }
+  .nav_toggle span {
+    width: 30px;
+    height: 4px;
+    background: var(--color1);
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transform-origin: 5px 0px;
+    transition: all 0.2s linear;
+  }
+  .nav_toggle.open > span {
+    transform: rotate(45deg) translate(0px, 0px);
+    transition: all 0.5 ease;
+  }
+  .nav_toggle.open > span:nth-child(2) {
+    display: none;
+    transition: all 0.5 ease;
+  }
+  .nav_toggle.open > span:nth-child(3) {
+    transform: rotate(-45deg) translate(-5px, 1px);
+    transition: all 0.5 ease;
+  }
+  .navbar_desk {
+    display: none !important;
+    transition: all 0.5 ease;
+  }
+  .no-scroll {
+    overflow: hidden;
+  }
+  .logo_toggle.open {
+    transition: all 0.5 ease;
+    display: none;
+  }
+  .logo_toggle {
+    transition: all 0.5 ease;
+    display: block;
+    width: 100px;
+    height: 100%;
+  }
+  .mobileDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 20px 10px;
+    flex-direction: row-reverse;
+  }
+}
+
+@media (min-width: 1025px) {
+  .navbar {
+    display: none !important;
+  }
+  .navbar_desk {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding: 5px 10px 20px 10px;
+  }
+  .nav_items {
+    display: none !important;
+  }
+  .githubLink {
+    display: none;
+  }
+}
