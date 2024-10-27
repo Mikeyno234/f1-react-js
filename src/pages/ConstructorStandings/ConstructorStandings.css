@@ -1,0 +1,144 @@
+.CS {
+  font-family: "F1 Bold";
+  font-size: 20px;
+  border-bottom: 5px solid var(--color3);
+  align-items: center;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.div_ds {
+  font-family: var(--f1r);
+}
+
+.standings {
+  padding-top: 20px;
+}
+
+.constructor_div {
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  gap: 5px;
+}
+
+.position,
+.flag,
+.team,
+.team-logo-div {
+  flex: 0 0 auto;
+}
+
+.constructor_div_div p {
+  margin: 0 10px;
+}
+
+.position {
+  width: 50px;
+  text-align: left;
+}
+
+.flag {
+  width: 30px;
+  height: 20px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.team-logo {
+  width: 30px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-logo-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  margin-left: 10px;
+}
+
+.team {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.points {
+  width: 80px;
+  text-align: right;
+  margin-left: auto;
+}
+
+.constructor_div:hover {
+  transition: all 0.3s;
+  opacity: 40%;
+}
+
+/* ======================================== */
+/* franja de colores */
+.team-color {
+  width: 10px;
+  height: 100%;
+  display: inline-block;
+  background-color: currentColor;
+  display: block;
+  flex-grow: 0;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+}
+
+.mercedes {
+  color: var(--mcs1);
+  padding: 0 0 10px 0;
+}
+
+.redbull {
+  color: var(--rb1);
+  padding: 0 0 10px 0;
+}
+
+.ferrari {
+  color: var(--fr1);
+  padding: 0 0 10px 0;
+}
+
+.astonmartin {
+  color: var(--am1);
+  padding: 0 0 10px 0;
+}
+
+.alpine {
+  color: var(--a4);
+  padding: 0 0 10px 0;
+}
+
+.rb {
+  color: var(--rbca1);
+  padding: 0 0 10px 0;
+}
+
+.sauber {
+  color: var(--k1);
+  padding: 0 0 10px 0;
+}
+
+.mclaren {
+  color: var(--mc1);
+  padding: 0 0 10px 0;
+}
+
+.haas {
+  color: var(--haas4);
+  padding: 0 0 10px 0;
+}
+
+.williams {
+  color: var(--w1);
+  padding: 0 0 10px 0;
+}
+
+/* ======================================== */
