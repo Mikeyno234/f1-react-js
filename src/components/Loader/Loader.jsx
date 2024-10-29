@@ -9,9 +9,9 @@ function Loader() {
         visible={true}
         height="100"
         width="100"
-        ariaLabel="vortex-loading"
+        ariaLabel="infinity-spin-loading"
         wrapperStyle={{}}
-        wrapperClass="vortex-wrapper"
+        wrapperClass="infinity-wrapper"
         colors={["#ffff", "#c42021", "#dd2c2c", "#e56161", "#005ba9", "#fd48c7"]}
       />
     </div>
