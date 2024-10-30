@@ -15,8 +15,7 @@ With this app created in React you will be able to see the classification of dri
 The main use of the application is done with [react](react.dev) using the [ergast](https://ergast.com/mrd/) api to be able to receive information about drivers, constructors, races, etc...
 
 # 🖌️ Figma project
-
-To layout the web (mobile first) I used the figma program, you can see the project [here](https://www.figma.com/design/ODMeDrwZXAJ3uYMqaNU37N/Untitled?node-id=45-1226&t=FxrkAr6LKEDzR72J-1).
+To layout the web (mobile first) I used the figma program, you can see the project [here](https://www.figma.com/design/ODMeDrwZXAJ3uYMqaNU37N/Untitled?node-id=45-1226&t=FxrkAr6LKEDzR72J-1) Thanks To someone to make this layout.
 
 # 💻 Technical competencies
 
