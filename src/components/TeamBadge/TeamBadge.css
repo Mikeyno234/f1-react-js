@@ -1,0 +1,13 @@
+.team-chip {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  border-radius: 7px;
+  font-family: var(--f1b), sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.02em;
+  color: #0a0a0c;
+  background: var(--text-3);
+}

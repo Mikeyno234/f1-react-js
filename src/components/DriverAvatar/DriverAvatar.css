@@ -1,0 +1,21 @@
+.driver-avatar {
+  display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--surface-2);
+  flex: 0 0 auto;
+}
+
+.driver-avatar-fallback {
+  display: grid;
+  place-items: center;
+  font-family: var(--f1b), sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}

@@ -4,12 +4,12 @@ function ErgastApi() {
   return (
     <a
       className="ergastLink"
-      href="https://ergast.com/mrd/"
+      href="https://github.com/jolpica/jolpica-f1"
       target="_blank"
       rel="noopener noreferrer"
     >
-      This app can be possible thanks to{" "}
-      <span className="Ergast">ErgastApi</span>
+      Data powered by{" "}
+      <span className="Ergast">Jolpica F1</span>
     </a>
   );
 }

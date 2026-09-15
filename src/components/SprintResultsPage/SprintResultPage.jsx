@@ -92,7 +92,7 @@ function SprintResultsPage() {
           </tr>
         </thead>
         <tbody>
-          {results.map((result, index) => (
+          {results.map((result) => (
             <tr key={result.position}>
               <td>{result.position}</td>
               <td>
@@ -101,11 +101,7 @@ function SprintResultsPage() {
                   result.Driver.driverId === fastestLapDriver?.Driver.driverId
                 )}
               </td>
-              <td>
-                {index === 0
-                  ? result.FastestLap?.Time?.time || "N/A"
-                  : result.Time?.time || result.status || "N/A"}
-              </td>
+              <td>{result.Time?.time || result.status || "N/A"}</td>
               <td>{result.points}</td>
             </tr>
           ))}

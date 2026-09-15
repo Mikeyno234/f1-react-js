@@ -1,7 +1,6 @@
 {
-  "extends": "next/core-web-vitals",
-  "parser": "@babel/eslint-parser",
+  "extends": ["react-app", "react-app/jest"],
   "rules": {
-    // your custom rules
+    "@next/next/no-img-element": "off"
   }
 }

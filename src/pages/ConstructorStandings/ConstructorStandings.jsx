@@ -7,10 +7,13 @@ import Loader from "../../components/Loader/Loader";
 import nationalityToCountryCode from "../../components/other/images";
 import teamColorClass from "../../components/other/teamColorClass";
 import teamLogo from "../../components/other/teamLogo";
+import TeamBadge from "../../components/TeamBadge/TeamBadge";
+import { loadDriverMedia, resolveTeamColor } from "../../apiServices/driverMedia";
 import { Link } from "react-router-dom";
 
 function DriverStandings() {
   const [drivers, setDrivers] = useState([]);
+  const [media, setMedia] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -26,20 +29,10 @@ function DriverStandings() {
       })
       .catch((error) => {
         console.error("Error fetching driver standings:", error);
+        setIsLoading(false);
       });
-  }, []);
 
-  useEffect(() => {
-    const favicon = document.getElementById("favicon");
-    if (favicon) {
-      favicon.href = favicon;
-    } else {
-      const link = document.createElement("link");
-      link.id = "favicon";
-      link.rel = "icon";
-      link.href = favicon;
-      document.head.appendChild(link);
-    }
+    loadDriverMedia().then(setMedia);
   }, []);
 
   return (
@@ -49,6 +42,12 @@ function DriverStandings() {
       ) : (
         <div className="div_ds">
           <div className="CS">Constructor Standings</div>
+          <div className="standings-head">
+            <span className="col-pos">#</span>
+            <span className="col-driver">Team</span>
+            <span className="col-team">&nbsp;</span>
+            <span className="col-pts">Points</span>
+          </div>
           <div className="standings">
             {drivers.map((team) => {
               return (
@@ -56,38 +55,42 @@ function DriverStandings() {
                   to={`/constructor/${team.Constructor.constructorId}`}
                   key={team.Constructor.constructorId}
                 >
-                  <div
-                    className="constructor_div"
-                    key={team.Constructor.constructorId}
-                  >
-                    <span
-                      className={`team-color ${
-                        teamColorClass[team.Constructor.name]
-                      }`}
-                    >
-                      .
-                    </span>
-                    <p className="position">{team.position}</p>
-                    <Flag
-                      className="flag"
-                      code={
-                        nationalityToCountryCode[team.Constructor.nationality]
-                      }
-                    />
-                    <p className="team">{team.Constructor.name}</p>
-                    <div className="team-logo-div">
-                      {teamLogo[team.Constructor.name] ? (
-                        <img
-                          className="team-logo"
-                          src={teamLogo[team.Constructor.name]}
-                          alt={team.Constructor.name}
+                  {(() => {
+                    const color = resolveTeamColor(media, team.Constructor);
+                    return (
+                      <div className="constructor_div">
+                        <span
+                          className={`team-color ${
+                            teamColorClass[team.Constructor.name] || ""
+                          }`}
+                          style={color ? { background: color } : undefined}
                         />
-                      ) : (
-                        team.Constructor.name
-                      )}
-                    </div>
-                    <p className="points">{team.points}PTS</p>
-                  </div>
+                        <p className="position">{team.position}</p>
+                        <div className="driver-cell">
+                          <Flag
+                            className="flag"
+                            code={
+                              nationalityToCountryCode[
+                                team.Constructor.nationality
+                              ]
+                            }
+                          />
+                          <span className="team">{team.Constructor.name}</span>
+                        </div>
+                        <div className="team-cell">
+                          <TeamBadge
+                            logo={teamLogo[team.Constructor.name]}
+                            color={color}
+                            name={team.Constructor.name}
+                          />
+                        </div>
+                        <p className="points">
+                          {team.points}
+                          <span className="pts-unit">PTS</span>
+                        </p>
+                      </div>
+                    );
+                  })()}
                 </Link>
               );
             })}

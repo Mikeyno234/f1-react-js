@@ -1,12 +1,104 @@
-.sch {
-  font-family: "F1 Bold";
-  font-size: 20px;
-  display: table;
-  border-bottom: 5px solid var(--color3);
-  padding-right: 115px;
-  padding-bottom: 2px;
+.div_sch {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) 2rem;
+  animation: fade 0.5s var(--ease) both;
 }
 
-.div_sch {
-  padding: 25px 0 0 15px;
+.sch {
+  font-family: var(--f1w), sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.2rem;
+}
+.sch::after {
+  content: "";
+  display: block;
+  margin-top: 0.7rem;
+  width: 64px;
+  height: 4px;
+  background: var(--f1-red);
+  border-radius: 2px;
+}
+
+.sch-empty {
+  color: var(--text-2);
+  padding-top: 1rem;
+}
+
+.sch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.sch-item {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: transform 0.28s var(--ease), border-color 0.28s var(--ease),
+    background 0.28s var(--ease);
+  animation: rise 0.45s var(--ease) both;
+}
+.sch-item:hover {
+  transform: translateX(6px);
+  background: var(--surface-hover);
+  border-color: color-mix(in srgb, var(--f1-red) 35%, var(--border));
+}
+
+.sch-round {
+  font-family: var(--f1b), sans-serif;
+  font-size: 1rem;
+  color: var(--f1-red);
+  text-align: center;
+}
+
+.sch-name {
+  font-family: var(--f1b), sans-serif;
+  font-size: 1.05rem;
+}
+.sch-circuit {
+  color: var(--text-2);
+  font-size: 0.82rem;
+  margin: 0.1rem 0;
+}
+.sch-loc {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-3);
+  font-size: 0.8rem;
+}
+.sch-loc .race-flag {
+  width: 22px !important;
+  height: 15px !important;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.sch-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+.sch-day {
+  font-family: var(--f1b), sans-serif;
+  font-size: 1rem;
+}
+.sch-time {
+  color: var(--text-3);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 560px) {
+  .sch-circuit {
+    display: none;
+  }
 }

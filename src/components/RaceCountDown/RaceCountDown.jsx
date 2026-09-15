@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./RaceCountDown.css";
 import Loader from "../Loader/Loader";
+import { getRaces } from "../../apiServices/racesApi";
+
+// Safely build a Date from an Ergast race, whether or not a time is present.
+const raceStart = (race) =>
+  new Date(`${race.date}T${race.time || "00:00:00Z"}`);
 
 const RaceCountdown = () => {
   const [nextRace, setNextRace] = useState(null);
-  const [timeRemaining, setTimeRemaining] = useState("");
+  const [timeRemaining, setTimeRemaining] = useState({});
 
   useEffect(() => {
     const fetchNextRace = async () => {
       try {
-        const response = await axios.get(
-          "https://ergast.com/api/f1/current.json"
-        );
-        const races = response.data.MRData.RaceTable.Races;
+        const races = await getRaces();
         const upcomingRace = races.find(
-          (race) =>
-            new Date(race.date + "T" + race.time.replace(":00Z", "")) >
-            new Date()
+          (race) => raceStart(race) > new Date()
         );
-        setNextRace(upcomingRace);
+        setNextRace(upcomingRace || null);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -32,39 +31,59 @@ const RaceCountdown = () => {
     if (!nextRace) return;
 
     const interval = setInterval(() => {
-      const raceDate = new Date(
-        nextRace.date + "T" + nextRace.time.replace(":00Z", "")
-      );
+      const raceDate = raceStart(nextRace);
       const now = new Date();
       const timeDiff = raceDate - now;
 
       if (timeDiff <= 0) {
-        setTimeRemaining("Race is starting now!");
+        setTimeRemaining({ done: true });
         clearInterval(interval);
       } else {
-        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-        setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+        setTimeRemaining({
+          days: Math.floor(timeDiff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor(
+            (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          ),
+          minutes: Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((timeDiff % (1000 * 60)) / 1000),
+        });
       }
     }, 1000);
 
     return () => clearInterval(interval);
   }, [nextRace]);
 
+  const timeParts = [
+    { label: "Days", value: timeRemaining.days },
+    { label: "Hrs", value: timeRemaining.hours },
+    { label: "Min", value: timeRemaining.minutes },
+    { label: "Sec", value: timeRemaining.seconds },
+  ];
+
   return (
     <div className="countdown-container">
       {nextRace ? (
         <div className="countdown-content">
-          <h1 className="NR">Next Race: {nextRace.raceName}</h1>
+          <span className="countdown-eyebrow">Next Grand Prix</span>
+          <h1 className="NR">{nextRace.raceName}</h1>
           <p className="raceC">
-            {nextRace.date} at {nextRace.time.replace(":00Z", "")}
+            {nextRace.Circuit?.Location?.locality},{" "}
+            {nextRace.Circuit?.Location?.country}
           </p>
-          <h2 className="h2RC">Time remaining: {timeRemaining}</h2>
+          {timeRemaining.done ? (
+            <h2 className="h2RC">Lights out</h2>
+          ) : (
+            <div className="countdown-clock">
+              {timeParts.map((part) => (
+                <div className="countdown-unit" key={part.label}>
+                  <span className="countdown-value">
+                    {String(part.value ?? 0).padStart(2, "0")}
+                  </span>
+                  <span className="countdown-label">{part.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ) : (
         <Loader />

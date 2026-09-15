@@ -65,11 +65,11 @@ function QualifyingResultsPage() {
           </tr>
         </thead>
         <tbody>
-          {results.map((result, index) => (
+          {results.map((result) => (
             <tr key={result.position}>
               <td>{result.position}</td>
               <td>
-                <Link to={`/driver/${result.Driver.driverId}`}>
+                <Link className="driver-name" to={`/driver/${result.Driver.driverId}`}>
                   {`${result.Driver.code}`}
                 </Link>
               </td>

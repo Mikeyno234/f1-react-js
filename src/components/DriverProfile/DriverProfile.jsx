@@ -9,6 +9,7 @@ import teamLogo from "../../components/other/teamLogo";
 import helmets from "../../components/other/helmets";
 import Flag from "react-world-flags";
 import driversBio from "../other/driversBio";
+import { loadDriverMedia, resolveDriverMedia } from "../../apiServices/driverMedia";
 import "../../assets/global.css";
 import "./DriverProfile.css";
 import { Link } from "react-router-dom";
@@ -16,8 +17,13 @@ import { Link } from "react-router-dom";
 function DriverProfile() {
   const { id } = useParams();
   const [driver, setDriver] = useState(null);
+  const [media, setMedia] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    loadDriverMedia().then(setMedia);
+  }, []);
 
   useEffect(() => {
     driversService
@@ -73,14 +79,19 @@ function DriverProfile() {
   }, [driver]);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="error">Error: {error.message}</div>;
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   if (!driver) {
-    return <div>No driver data available</div>;
+    return <div className="error">No driver data available</div>;
   }
 
   const age = calculateAge(driver.Driver.dateOfBirth);
+  const media0 = resolveDriverMedia(media, driver.Driver);
 
   return (
     <>
@@ -104,11 +115,13 @@ function DriverProfile() {
                   driver.Driver.permanentNumber
                 )}
               </div>
-              {driversImage2[driver.Driver.driverId] && (
+              {(driversImage2[driver.Driver.driverId] || media0?.headshot) && (
                 <img
                   className="driver-logoProfile"
-                  src={driversImage2[driver.Driver.driverId]}
-                  alt={driver.Driver.driverId}
+                  src={
+                    driversImage2[driver.Driver.driverId] || media0.headshot
+                  }
+                  alt={`${driver.Driver.givenName} ${driver.Driver.familyName}`}
                 />
               )}
             </div>

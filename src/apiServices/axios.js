@@ -1,9 +1,6 @@
 import Axios from "axios";
+import { BASE_URL } from "./config";
 
 export const ergastAxios = Axios.create({
-  baseURL: "https://ergast.com/api/f1",
-});
-
-export const wikiImageAxios = Axios.create({
-  baseURL: "https://en.wikipedia.org/w/",
+  baseURL: BASE_URL,
 });

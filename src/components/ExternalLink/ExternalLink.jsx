@@ -4,8 +4,7 @@ import { FaGithub } from "react-icons/fa";
 function ExternalLink() {
   return (
     <a
-      href="https://github.com/Mikeyno234
-      "
+      href="https://github.com/Mikeyno234"
       target="_blank"
       rel="noopener noreferrer"
     >

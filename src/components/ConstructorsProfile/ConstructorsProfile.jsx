@@ -3,11 +3,11 @@ import teamsService from "../../apiServices/constructorsApi";
 import { useParams } from "react-router";
 import Loader from "../Loader/Loader";
 import driversImage2 from "../../components/other/driversImage2";
+import { loadDriverMedia, resolveDriverMedia } from "../../apiServices/driverMedia";
 // import permanentNumber from "../../components/other/permamentNumber";
 // import nationalityToCountryCode from "../../components/other/images";
 // import teamLogo from "../../components/other/teamLogo";
 // import Flag from "react-world-flags";
-import teamCars from "../other/teamCars";
 import "../../assets/global.css";
 import "./ConstructorsProfile.css";
 import { Link } from "react-router-dom";
@@ -17,6 +17,7 @@ function ConstructorsProfile() {
   const { id } = useParams();
   const [team, setTeam] = useState(null);
   const [drivers, setDrivers] = useState([]);
+  const [media, setMedia] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [totalWins, setTotalWins] = useState(0);
@@ -27,9 +28,7 @@ function ConstructorsProfile() {
       setLoading(true);
       try {
         const fetchedDrivers = await teamsService.getDriversByConstructor(id);
-        const filteredDrivers = fetchedDrivers.filter(
-          (driver) => driver.Driver.driverId !== "bearman"
-        );
+        const filteredDrivers = fetchedDrivers;
         if (filteredDrivers.length > 0) {
           setTeam(
             filteredDrivers[0].Constructors.find(
@@ -60,6 +59,7 @@ function ConstructorsProfile() {
     };
 
     fetchTeamAndDrivers();
+    loadDriverMedia().then(setMedia);
   }, [id]);
 
   useEffect(() => {
@@ -106,13 +106,23 @@ function ConstructorsProfile() {
           {drivers.map((driver) => (
             <div className="driver-card" key={driver.Driver.driverId}>
               <Link to={`/driver/${driver.Driver.driverId}`}>
-                {driversImage2[driver.Driver.driverId] && (
-                  <img
-                    className="driver-logoProfileCar"
-                    src={driversImage2[driver.Driver.driverId]}
-                    alt={driver.Driver.driverId}
-                  />
-                )}
+                {(() => {
+                  const img =
+                    driversImage2[driver.Driver.driverId] ||
+                    resolveDriverMedia(media, driver.Driver)?.headshot;
+                  return img ? (
+                    <img
+                      className="driver-logoProfileCar"
+                      src={img}
+                      alt={`${driver.Driver.givenName} ${driver.Driver.familyName}`}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="driver-face-fallback">
+                      {driver.Driver.familyName?.slice(0, 3).toUpperCase()}
+                    </span>
+                  );
+                })()}
                 <div className="driver-card-content">
                   <p className="driver-card-title">
                     {driver.Driver.givenName} {driver.Driver.familyName}

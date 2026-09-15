@@ -1,50 +1,27 @@
-import { Switch, styled } from "@mui/material";
+import React from "react";
+import "./ThemeSwitch.css";
 
-const ThemeSwitch = styled(Switch)(({ theme }) => ({
-  width: 62,
-  height: 34,
-  padding: 7,
-  "& .MuiSwitch-switchBase": {
-    margin: 1,
-    padding: 0,
-    transform: "translateX(6px)",
-    transition: "transform 0.3s ease-in-out",
-    "&.Mui-checked": {
-      color: "#fff",
-      transform: "translateX(22px)",
-      "& .MuiSwitch-thumb:before": {
-        content: '"🌙"',
-      },
-      "& + .MuiSwitch-track": {
-        opacity: 1,
-        backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
-      },
-    },
-  },
-  "& .MuiSwitch-thumb": {
-    backgroundColor: "#fff",
-    width: 32,
-    height: 32,
-    transition: "transform 0.3s ease-in-out",
-    "&:before": {
-      content: '"☀️"',
-      position: "absolute",
-      width: "100%",
-      height: "100%",
-      left: 0,
-      top: 0,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: "18px",
-      transition: "content 0.3s ease-in-out",
-    },
-  },
-  "& .MuiSwitch-track": {
-    opacity: 1,
-    backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
-    borderRadius: 20 / 2,
-  },
-}));
+// Minimal, emoji-free light/dark toggle. `checked` = dark mode.
+function ThemeSwitch({ checked, onChange, onClick, className = "" }) {
+  const handle = (e) => {
+    if (onChange) onChange(e);
+    if (onClick) onClick(e);
+  };
+
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label="Toggle dark mode"
+      className={`theme-switch ${checked ? "is-dark" : ""} ${className}`}
+      onClick={handle}
+    >
+      <span className="theme-switch-track">
+        <span className="theme-switch-thumb" />
+      </span>
+    </button>
+  );
+}
 
 export default ThemeSwitch;

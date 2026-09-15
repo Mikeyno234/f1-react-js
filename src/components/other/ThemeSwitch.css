@@ -1,0 +1,38 @@
+.theme-switch {
+  --w: 52px;
+  --h: 28px;
+  --pad: 3px;
+  display: inline-flex;
+  padding: 0;
+}
+
+.theme-switch-track {
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.theme-switch-thumb {
+  position: absolute;
+  top: var(--pad);
+  left: var(--pad);
+  width: calc(var(--h) - var(--pad) * 2 - 2px);
+  height: calc(var(--h) - var(--pad) * 2 - 2px);
+  border-radius: 50%;
+  background: var(--f1-red);
+  box-shadow: 0 2px 8px var(--accent-glow);
+  transition: transform 0.32s var(--ease), background 0.3s var(--ease);
+}
+
+.theme-switch.is-dark .theme-switch-thumb {
+  transform: translateX(calc(var(--w) - var(--h)));
+  background: var(--text);
+}
+
+.theme-switch:hover .theme-switch-track {
+  border-color: var(--f1-red);
+}

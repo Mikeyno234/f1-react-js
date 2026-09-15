@@ -1,133 +1,208 @@
-.DS {
-  font-family: "F1 Bold";
-  font-size: 20px;
-  border-bottom: 5px solid var(--color3);
-  text-align: left;
-  padding-left: 10px;
-  padding-bottom: 10px;
+.div_ds {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) 2rem;
+  font-family: var(--f1r), sans-serif;
+  animation: fade 0.5s var(--ease) both;
+}
+
+.DS,
+.CS {
+  font-family: var(--f1w), sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  letter-spacing: -0.02em;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.DS::after,
+.CS::after {
+  content: "";
+  display: block;
+  margin-top: 0.7rem;
+  width: 64px;
+  height: 4px;
+  background: var(--f1-red);
+  border-radius: 2px;
+}
+
+/* Column header */
+.standings-head {
+  display: grid;
+  grid-template-columns: 12px 44px 1fr 1.1fr 92px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  margin-top: 1.4rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.standings-head .col-pts {
+  text-align: right;
 }
 
 .standings {
-  padding-top: 20px;
-}
-
-.driver_div {
   display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding-top: 0.6rem;
+}
+
+.standings > a {
+  animation: rise 0.5s var(--ease) both;
+}
+.standings > a:nth-child(1) { animation-delay: 0.02s; }
+.standings > a:nth-child(2) { animation-delay: 0.05s; }
+.standings > a:nth-child(3) { animation-delay: 0.08s; }
+.standings > a:nth-child(4) { animation-delay: 0.11s; }
+.standings > a:nth-child(5) { animation-delay: 0.14s; }
+.standings > a:nth-child(n+6) { animation-delay: 0.17s; }
+
+.driver_div,
+.constructor_div {
+  display: grid;
+  grid-template-columns: 12px 44px 1fr 1.1fr 92px;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.28s var(--ease), border-color 0.28s var(--ease),
+    background 0.28s var(--ease);
 }
 
-.position,
-.flag,
-.driver,
-.team-logo-div {
-  flex: 0 0 auto;
-}
-
-.driver_div p {
-  margin: 0 10px;
+.driver_div:hover,
+.constructor_div:hover {
+  transform: translateX(6px);
+  background: var(--surface-hover);
+  border-color: color-mix(in srgb, var(--f1-red) 40%, var(--border));
 }
 
 .position {
-  width: 50px;
-  text-align: left;
+  font-family: var(--f1b), sans-serif;
+  font-size: 1.15rem;
+  color: var(--text);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.driver-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.driver-cell .driver-face {
+  width: 38px;
+  height: 38px;
 }
 
 .flag {
-  width: 30px;
-  height: 20px;
+  width: 26px;
+  height: 18px;
   object-fit: cover;
-  margin-right: 10px;
+  border-radius: 3px;
+  flex: 0 0 auto;
+  box-shadow: 0 0 0 1px var(--border);
 }
 
-.team-logo {
-  width: 30px;
-  height: 100%;
-  object-fit: cover;
-}
-
-.team-logo-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  margin-left: 10px;
+.driver-given {
+  color: var(--text-2);
+  font-size: 0.92rem;
+  white-space: nowrap;
 }
 
 .driver {
-  flex-grow: 1;
-  text-align: left;
+  font-family: var(--f1b), sans-serif;
+  font-size: 0.98rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.team-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.team-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.team-name,
+.team {
+  color: var(--text-2);
+  font-size: 0.86rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .points {
-  width: 80px;
+  font-family: var(--f1b), sans-serif;
+  font-size: 1.05rem;
+  color: var(--text);
   text-align: right;
-  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem;
 }
 
-/* ======================================== */
-/* franja de colores */
+.pts-unit {
+  font-family: var(--f1r), sans-serif;
+  font-size: 0.58rem;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+}
+
+/* Team color accent bar (left) */
 .team-color {
-  width: 10px;
-  height: 100%;
-  display: inline-block;
-  background-color: currentColor;
   display: block;
-  flex-grow: 0;
-  flex-basis: auto;
-  align-self: auto;
-  order: 0;
+  width: 5px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--text-3);
+  justify-self: center;
 }
 
-.mercedes {
-  color: var(--mcs1);
-  padding: 0 0 10px 0;
-}
+.team-color.mercedes { background: var(--mcs1); }
+.team-color.redbull { background: var(--rb1); }
+.team-color.ferrari { background: var(--fr1); }
+.team-color.astonmartin { background: var(--am1); }
+.team-color.alpine { background: var(--a1); }
+.team-color.rb { background: var(--rbca1); }
+.team-color.sauber { background: var(--k1); }
+.team-color.mclaren { background: var(--mc1); }
+.team-color.haas { background: var(--haas3); }
+.team-color.williams { background: var(--w1); }
+.team-color.audi { background: var(--audi1); }
+.team-color.cadillac { background: var(--cadillac1); }
 
-.redbull {
-  color: var(--rb1);
-  padding: 0 0 10px 0;
+@media (max-width: 640px) {
+  .standings-head,
+  .driver_div,
+  .constructor_div {
+    grid-template-columns: 8px 34px 1fr 66px;
+  }
+  .standings-head .col-team,
+  .team-cell .team-name {
+    display: none;
+  }
+  .driver-given {
+    display: none;
+  }
 }
-
-.ferrari {
-  color: var(--fr1);
-  padding: 0 0 10px 0;
-}
-
-.astonmartin {
-  color: var(--am1);
-  padding: 0 0 10px 0;
-}
-
-.alpine {
-  color: var(--a4);
-  padding: 0 0 10px 0;
-}
-
-.rb {
-  color: var(--rbca1);
-  padding: 0 0 10px 0;
-}
-
-.sauber {
-  color: var(--k1);
-  padding: 0 0 10px 0;
-}
-
-.mclaren {
-  color: var(--mc1);
-  padding: 0 0 10px 0;
-}
-
-.haas {
-  color: var(--haas4);
-  padding: 0 0 10px 0;
-}
-
-.williams {
-  color: var(--w1);
-  padding: 0 0 10px 0;
-}
-
-/* ======================================== */

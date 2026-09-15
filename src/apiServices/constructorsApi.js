@@ -1,24 +1,9 @@
-// import axios from "axios";
-
-// const teamsApi = "https://ergast.com/api/f1/current/constructorStandings.json";
-// const teamsA = "https://ergast.com/api/f1/2024/constructors";
-
-// const teamsService = {
-//   getAll() {
-//     return fetch(teamsApi)
-//       .then((res) => res.json())
-//       .then((data) => data);
-//   },
-
-//   getbyId(id) {
-//     return axios.get(`${teamsA}/${id}.json`).then((res) => res.data);
-//   },
-// };
 import axios from "axios";
+import { BASE_URL } from "./config";
 
-const teamsApi = "https://ergast.com/api/f1/current/constructorStandings.json";
-const driversApi = "https://ergast.com/api/f1/current/driverStandings.json";
-const teamsA = "https://ergast.com/api/f1/2024/constructors";
+const teamsApi = `${BASE_URL}/current/constructorStandings.json`;
+const driversApi = `${BASE_URL}/current/driverStandings.json`;
+const teamsA = `${BASE_URL}/current/constructors`;
 
 const getDriversByConstructor = async (constructorId) => {
   try {
@@ -38,9 +23,7 @@ const getDriversByConstructor = async (constructorId) => {
 
 const teamsService = {
   getAll() {
-    return fetch(teamsApi)
-      .then((res) => res.json())
-      .then((data) => data);
+    return axios.get(teamsApi).then((res) => res.data);
   },
 
   getbyId(id) {

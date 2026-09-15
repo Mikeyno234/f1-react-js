@@ -1,6 +1,7 @@
 import axios from "axios";
+import { BASE_URL } from "../../apiServices/config";
 
-const driversA = "https://ergast.com/api/f1/current/driverStandings.json";
+const driversA = `${BASE_URL}/current/driverStandings.json`;
 
 const getDriversByConstructor = async (constructorId) => {
   try {

@@ -3,38 +3,30 @@ import "../../assets/global.css";
 import RaceCountdown from "../../components/RaceCountDown/RaceCountDown";
 import "./LandingPage.css";
 import LastRaceResults from "../../components/LastRaceResults/LastRaceResults";
-import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 function LandingPage() {
   useEffect(() => {
-    document.title = "Home";
-  }, []);
-
-  useEffect(() => {
-    const favicon = document.getElementById("favicon");
-    if (favicon) {
-      favicon.href = favicon;
-    } else {
-      const link = document.createElement("link");
-      link.id = "favicon";
-      link.rel = "icon";
-      link.href = favicon;
-      document.head.appendChild(link);
-    }
+    document.title = "F1 Hub";
   }, []);
 
   return (
     <div>
       <div className="landing-container">
+        <section className="hero">
+          <div className="hero-grid" aria-hidden="true" />
+          <div className="hero-inner">
+            <span className="hero-eyebrow">Formula 1 // Live Season</span>
+            <h1 className="hero-title">
+              Every lap.<br />
+              Every point.
+            </h1>
+            <p className="hero-sub">
+              Standings, results and the countdown to lights out, in one place.
+            </p>
+          </div>
+        </section>
         <RaceCountdown />
         <LastRaceResults />
-        <div className="twitter-feed-container">
-          <TwitterTimelineEmbed
-            sourceType="profile"
-            screenName="f1"
-            options={{ height: "600px", width: "1000px" }}
-          />
-        </div>
       </div>
     </div>
   );

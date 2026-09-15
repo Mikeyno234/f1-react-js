@@ -1,91 +1,133 @@
 .races-container {
-  padding: 20px;
-  max-width: 800px;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) 2rem;
+  max-width: 860px;
   margin: 0 auto;
+  animation: fade 0.5s var(--ease) both;
 }
 
 .races-container h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 2em;
-  color: var(--text-color);
+  font-family: var(--f1w), sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.4rem;
 }
-
-.races-list {
-  list-style: none;
-  padding-top: 10px;
-}
-
-.race-item {
-  border: 1px solid var(--button-background);
-  border-radius: 8px;
-  margin-bottom: 15px;
-  padding: 10px;
-  background: var(--background-color);
-  transition: all 0.3s ease;
-  list-style: none;
+.races-container h1::after {
+  content: "";
+  display: block;
+  margin-top: 0.7rem;
+  width: 64px;
+  height: 4px;
+  background: var(--f1-red);
+  border-radius: 2px;
 }
 
 .toggle-button {
-  transition: all 0.3s ease;
-  background: var(--background-color);
-  color: var(--text-color);
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid var(--button-background);
+  font-family: var(--f1r), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+    transform 0.2s var(--ease);
 }
-
 .toggle-button:hover {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: 50%;
+  color: var(--text);
+  border-color: var(--f1-red);
+  transform: translateY(-2px);
 }
 
+.races-list,
 .race-list {
-  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 1.2rem;
 }
 
-.driver-name.fastest-lap {
-  color: purple;
+.races-list > li,
+.race-list > li {
+  animation: rise 0.45s var(--ease) both;
+}
+
+.race-item {
+  position: relative;
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.28s var(--ease), border-color 0.28s var(--ease),
+    background 0.28s var(--ease);
+}
+
+.race-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: var(--f1-red);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s var(--ease);
 }
 
 .race-item:hover {
-  opacity: 30%;
-  transition: all 0.3s ease;
+  transform: translateX(6px);
+  background: var(--surface-hover);
+  border-color: color-mix(in srgb, var(--f1-red) 35%, var(--border));
+}
+.race-item:hover::before {
+  transform: scaleY(1);
 }
 
 .race-link {
-  text-decoration: none;
   color: inherit;
 }
 
 .race-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 0.25rem;
 }
 
 .race-name {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin: 5px 0;
+  font-family: var(--f1b), sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.15rem;
 }
 
-.race-date,
+.race-date {
+  font-size: 0.8rem;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+
 .race-location {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1em;
-  margin: 3px 0;
-  color: var(--text-color2);
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--text-2);
 }
 
 .race-flag {
-  height: 20px;
+  width: 26px !important;
+  height: 18px !important;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--border);
+}
+.race-flag img {
+  width: 26px !important;
+  height: 18px !important;
+  object-fit: cover;
 }
 
-.race-flag img {
-  width: 120px;
-  height: 120px;
+.driver-name.fastest-lap {
+  color: #b06cff;
 }
